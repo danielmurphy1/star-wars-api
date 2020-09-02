@@ -1,26 +1,43 @@
 import React from 'react';
-import logo from './logo.svg';
+import logo, { ReactComponent } from './logo.svg';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+// https://swapi.co/ (old)
+// https://swapi.dev/
 
+//"https://swapi.dev/api/people/4/ need to add final "/"
+
+class App extends React.Component {
+  constructor(){
+    super();
+    this.state = {
+      loading: false,
+      character:{}
+    }
+  }
+
+  componentDidMount(){
+    this.setState({loading: true})
+    fetch("https://swapi.dev/api/people/10/")
+      .then(response => response.json())
+      .then(data => {
+        this.setState({
+          loading: false,
+          character: data
+      })
+    })
+    .catch(function(){
+      alert("error")
+    })
+  }
+
+    render() {
+      return (
+        <div className="App">
+          <p>{(this.state.loading) ? "loading" : (this.state.character.name)}</p>
+        </div>
+      );
+    }
+
+}
 export default App;
