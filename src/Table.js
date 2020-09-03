@@ -29,7 +29,7 @@ class Table extends React.Component {
                     <td>{this.props.character.birth_year}</td>
                     <td>{this.props.character.height}</td>
                     <td>{this.props.character.mass}</td>
-                    <td>{this.props.character.homeworld}</td>
+                    <td>{this.props.planet.name}</td>
                     <td>{this.props.character.species}</td>
                 </tr>
                 </tbody>
