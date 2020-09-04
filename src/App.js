@@ -12,14 +12,14 @@ class App extends React.Component {
     super();
     this.state = {
       loading: false,
-      character:{}, 
+      characters:[], 
       planet: {}
     }
   }
 
   componentDidMount(){
     this.setState({loading: true})
-    fetch("https://swapi.dev/api/people/10/")
+    fetch("https://swapi.dev/api/people/")
       .then(response => response.json())
       .then(data => {
         fetch("http://swapi.dev/api/planets/20/	")
@@ -27,7 +27,7 @@ class App extends React.Component {
         .then(data2 => {
         this.setState({
           loading: false,
-          character: data,
+          characters: data,
           planet: data2
         })
       })
@@ -40,7 +40,7 @@ class App extends React.Component {
     render() {
       return (
         <div className="App">
-          {(this.state.loading) ? "loading" : <Table character={this.state.character} planet={this.state.planet}/>}
+          {(this.state.loading) ? "loading" : <Table characters={this.state.characters} planet={this.state.planet}/>}
         </div>
       );
     }

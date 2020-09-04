@@ -1,43 +1,76 @@
 import React from "react";
 
 
+function Table (props){
+    const tableRows = [];
 
-class Table extends React.Component {
-    contructor(props){
-        
-        this.setState(props.character)
+    for(let i = 0; i < props.characters.length-1; i++){
+        let character = props.characters[i];
+        console.log(character)
+        tableRows.push(<tr>
+                            <td>{character.name}</td>
 
-        
+                        </tr>)
+        console.log(tableRows);
     }
 
-    render(){
-        return(
-            <table>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Birth Date</th>
-                        <th>Height</th>
-                        <th>Mass</th>
-                        <th>Homeworld</th>
-                        <th>Species</th>
-                    </tr>
-                </thead>
-                <tbody>
+    return(
+        <table>
+            <thead>
                 <tr>
-                    <td>{this.props.character.name}</td>
-                    <td>{this.props.character.birth_year}</td>
-                    <td>{this.props.character.height}</td>
-                    <td>{this.props.character.mass}</td>
-                    <td>{this.props.planet.name}</td>
-                    <td>{this.props.character.species}</td>
+                    <th>Name</th>
+                    <th>Birth Date</th>
+                    <th>Height</th>
+                    <th>Mass</th>
+                    <th>Homeworld</th>
+                    <th>Species</th>
                 </tr>
-                </tbody>
-            </table>
-        )
-    }
+            </thead>
+            <tbody>
+                {tableRows}
+            </tbody>
+        </table>
+    )
+    
 }
+// class Table extends React.Component {
+//     constructor(props){
+
+//     const tableRows = [];
+
+//     for(let i = 0; i< this.props.character.length-1; i++){
+//         let character = this.props.characters[i];
+//         tableRows.push(<tr>
+//                             <td>{character.name}</td>
+
+//                         </tr>)
+//     }
+
+//     }
+
+//     render(){
+//         return(
+//             <table>
+//                 <thead>
+//                     <tr>
+//                         <th>Name</th>
+//                         <th>Birth Date</th>
+//                         <th>Height</th>
+//                         <th>Mass</th>
+//                         <th>Homeworld</th>
+//                         <th>Species</th>
+//                     </tr>
+//                 </thead>
+//                 <tbody>
+//                     {tableRows}
+//                 </tbody>
+//             </table>
+//         )
+//     }
+// }
 
 
 
 export default Table;
+
+
