@@ -2,16 +2,25 @@ import React from "react";
 
 
 function Table (props){
+    //console.log(typeof props.characters)
+    //console.log(props.characters)
     const tableRows = [];
-
-    for(let i = 0; i < props.characters.length-1; i++){
+    // console.log(props.planets.results)
+    // console.log(props.characters.results)
+    // console.log(props.characters)
+    // console.log(props.planets)
+    for(let i = 0; i < props.characters.length; i++){
         let character = props.characters[i];
-        console.log(character)
-        tableRows.push(<tr>
+        
+        tableRows.push(<tr key={character.name}>
                             <td>{character.name}</td>
-
+                            <td>{character.birth_year}</td>
+                            <td>{character.height}</td>
+                            <td>{character.mass}</td>
+                            <td>{character.homeworld === "http://swapi.dev/api/planets/1/" ? "Tatooine" : character.homeworld}</td>
+                            <td>{character.species.length < 1 ? "Human" : character.species}</td>
                         </tr>)
-        console.log(tableRows);
+        //console.log(tableRows);
     }
 
     return(
