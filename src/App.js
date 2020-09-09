@@ -18,7 +18,12 @@ class App extends React.Component {
       species: []
     }
 
+    this.handleClick = this.handleClick.bind(this);
     
+  }
+
+  handleClick(){
+    console.log("clicked")
   }
 
   async componentDidMount(){
@@ -59,7 +64,16 @@ class App extends React.Component {
     render() {
       return (
         <div className="App">
-          {(this.state.loading) ? "loading" : <Table key={this.state.characters} characters={this.state.characters} planets={this.state.planets} species={this.state.species}/>}
+          {(this.state.loading) ? "loading" : 
+            <Table 
+              key={this.state.characters} 
+              characters={this.state.characters} 
+              planets={this.state.planets} 
+              species={this.state.species}/>}
+            <button onClick={this.handleClick}>1</button>
+            <button onClick={this.handleClick}>2</button>
+            <button onClick={this.handleClick}>3</button>
+            <button onClick={this.handleClick}>4</button>
         </div>
       );
     }
