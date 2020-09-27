@@ -8,7 +8,7 @@ function Table (props){
     // console.log(props.planets.results)
     // console.log(props.characters.results)
     // console.log(props.characters)
-     console.log(props.planets)
+     //console.log(props.planets)
     for(let i = 0; i < props.characters.length; i++){
         let character = props.characters[i];
         let planet = props.planets[i];
