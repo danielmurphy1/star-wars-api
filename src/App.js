@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import Table from "./Components/Table"
 import Pagination from "./Components/Pagination";
+import SearchForm from "./Components/SearchForm";
 
 // https://swapi.co/ (old)
 // https://swapi.dev/
@@ -15,11 +16,13 @@ class App extends React.Component {
       loading: false,
       characters:[], 
       planets: [], 
-      species: []
+      species: [], 
+      nameSearch: ""
     }
 
     this.loadCharacters = this.loadCharacters.bind(this);
-    
+    this.handleChange = this.handleChange.bind(this);
+    this.searchCharacter = this.searchCharacter.bind(this);
   }
 
  
@@ -65,12 +68,33 @@ class App extends React.Component {
     this.setState({
       characters: response.results
     });
+}
 
-  }
+async searchCharacter(event){
+  event.preventDefault();
+  console.log(this.state.nameSearch)
+  const response = await fetch(`https://swapi.dev/api/people/?search=${this.state.nameSearch}`)
+    .then(res => res.json());
+    console.log(response.results)
+    this.setState({
+      characters: response.results
+    });
+    console.log(this.state.characters)
+  
+}
+
+handleChange(event){
+  const {name, value} = event.target;
+  this.setState({
+    [name] : value
+  })
+  console.log(this.state.nameSearch)
+};
 
     render() {
       return (
         <div className="App">
+          <SearchForm nameSearch={this.state.nameSearch} searchCharacter={this.searchCharacter} handleChange={this.handleChange} />
           {(this.state.loading) ? "loading" : 
             <Table 
               key={this.state.characters} 
