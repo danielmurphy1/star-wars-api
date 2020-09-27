@@ -8,11 +8,11 @@ class Pagination extends React.Component{
             pages.push(i);
         }
 
-        const navigate = pages.map((page) => {
+        const navigate = pages.map((page) => (
             <button key={page} onClick={()=> this.props.loadCharacters(page)}>
                 {page}
             </button>
-        });
+        ));
 
         return(
             <div>
@@ -22,7 +22,8 @@ class Pagination extends React.Component{
     
     }
 
-}  
+}
+
 
     
 

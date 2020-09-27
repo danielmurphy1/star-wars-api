@@ -2,7 +2,6 @@ import React from 'react';
 import './App.css';
 import Table from "./Components/Table"
 import Pagination from "./Components/Pagination";
-import { findRenderedDOMComponentWithClass } from 'react-dom/test-utils';
 
 // https://swapi.co/ (old)
 // https://swapi.dev/
@@ -61,8 +60,8 @@ class App extends React.Component {
   }
 
   async loadCharacters(pageNumber){
-   const response = await fetch(`https://swapi.dev/api/peope/?page=${pageNumber}`)
-    .then(res = res.jason());
+   const response = await fetch(`https://swapi.dev/api/people/?page=${pageNumber}`)
+    .then(res => res.json());
     this.setState({
       characters: response.results
     });
