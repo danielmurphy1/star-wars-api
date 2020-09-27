@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
-import Table from "./Table"
+import Table from "./Components/Table"
+import Pagination from "./Components/Pagination";
 import { findRenderedDOMComponentWithClass } from 'react-dom/test-utils';
 
 // https://swapi.co/ (old)
@@ -18,13 +19,11 @@ class App extends React.Component {
       species: []
     }
 
-    this.handleClick = this.handleClick.bind(this);
+    this.loadCharacters = this.loadCharacters.bind(this);
     
   }
 
-  handleClick(){
-    console.log("clicked")
-  }
+ 
 
   async componentDidMount(){
     const planetsArray = [];
@@ -61,6 +60,15 @@ class App extends React.Component {
     })
   }
 
+  async loadCharacters(pageNumber){
+   const response = await fetch(`https://swapi.dev/api/peope/?page=${pageNumber}`)
+    .then(res = res.jason());
+    this.setState({
+      characters: response.results
+    });
+
+  }
+
     render() {
       return (
         <div className="App">
@@ -70,10 +78,7 @@ class App extends React.Component {
               characters={this.state.characters} 
               planets={this.state.planets} 
               species={this.state.species}/>}
-            <button onClick={this.handleClick}>1</button>
-            <button onClick={this.handleClick}>2</button>
-            <button onClick={this.handleClick}>3</button>
-            <button onClick={this.handleClick}>4</button>
+            <Pagination loadCharacters = {this.loadCharacters} />
         </div>
       );
     }
