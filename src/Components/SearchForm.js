@@ -3,10 +3,10 @@ import React from "react";
 function SearchForm(props){
 
     return(
-        <form onSubmit={props.searchCharacter}>
+        <form onSubmit={props.searchCharacter} className="mb-3">
             <label>Search Character: </label>
             <input type="text" name="nameSearch" value={props.nameSearch} onChange={props.handleChange}></input>
-            <button type="submit">Search</button>
+            <button className="btn btn-outline-warning" type="submit">Search</button>
         </form>
     )
 }

@@ -1,6 +1,8 @@
 import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import Table from "./Components/Table"
+import Header from "./Components/Header";
+import Table from "./Components/Table";
 import Pagination from "./Components/Pagination";
 import SearchForm from "./Components/SearchForm";
 
@@ -98,6 +100,7 @@ handleChange(event){
     render() {
       return (
         <div className="App">
+          <Header />
           <SearchForm nameSearch={this.state.nameSearch} searchCharacter={this.searchCharacter} handleChange={this.handleChange} />
           {(this.state.loading) ? "loading" : 
             <Table 

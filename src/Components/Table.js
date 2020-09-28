@@ -25,8 +25,8 @@ function Table (props){
     }
 
     return(
-        <table>
-            <thead>
+        <table className="table table-dark">
+            <thead className="thead-light">
                 <tr>
                     <th>Name</th>
                     <th>Birth Date</th>
