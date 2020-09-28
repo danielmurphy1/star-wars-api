@@ -4,13 +4,16 @@ class Pagination extends React.Component{
 
     render(){
         let pages =[];
-        for(let i = 1; i < this.props.characters.length; i++){
+        let numButtons;
+
+        if(this.props.count % 10 === 0){
+            numButtons = this.props.count / 10;
+        }else {
+            numButtons = (this.props.count / 10) + 1
+        }
+        for(let i = 1; i <= numButtons; i++){
             pages.push(i);
         }
-
-        // was for(let i = 1; i <= 9; i++){
-        //     pages.push(i);
-        // }
 
 
         const navigate = pages.map((page) => (

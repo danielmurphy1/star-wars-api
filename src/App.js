@@ -17,7 +17,8 @@ class App extends React.Component {
       characters:[], 
       planets: [], 
       species: [], 
-      nameSearch: ""
+      nameSearch: "", 
+      count: ""
     }
 
     this.loadCharacters = this.loadCharacters.bind(this);
@@ -56,7 +57,8 @@ class App extends React.Component {
       loading: false, 
       characters: [...data.results], //...data2.results]
       planets: planetsArray,
-      species: speciesArray
+      species: speciesArray, 
+      count: data.count
     })
   }
 
@@ -64,8 +66,10 @@ class App extends React.Component {
    const response = await fetch(`https://swapi.dev/api/people/?page=${pageNumber}&search=${this.state.nameSearch}`)
     .then(res => res.json());
     this.setState({
-      characters: response.results
+      characters: response.results, 
+      count: response.count
     });
+    
 }
 
 async searchCharacter(event){
@@ -75,9 +79,11 @@ async searchCharacter(event){
     .then(res => res.json());
     // console.log(response.results)
     this.setState({
-      characters: response.results
+      characters: response.results,
+      count: response.count
     });
     //console.log(this.state.characters.length)
+    console.log(response.count)
   
 }
 
@@ -99,7 +105,7 @@ handleChange(event){
               characters={this.state.characters} 
               planets={this.state.planets} 
               species={this.state.species}/>}
-            <Pagination loadCharacters = {this.loadCharacters} characters={this.state.characters} />
+            <Pagination loadCharacters = {this.loadCharacters} characters={this.state.characters} count={this.state.count} />
         </div>
       );
     }
