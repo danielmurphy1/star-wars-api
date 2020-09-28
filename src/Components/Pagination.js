@@ -6,15 +6,13 @@ class Pagination extends React.Component{
         let pages =[];
         let numButtons;
 
-        if(this.props.count % 10 === 0){
-            numButtons = this.props.count / 10;
-        }else {
-            numButtons = (this.props.count / 10) + 1
-        }
+        (this.props.count % 10 === 0) ? 
+            numButtons = (this.props.count /10) : 
+            numButtons = ((this.props.count) / 10 + 1);
+
         for(let i = 1; i <= numButtons; i++){
             pages.push(i);
         }
-
 
         const navigate = pages.map((page) => (
             <button key={page} onClick={()=> this.props.loadCharacters(page)}>
@@ -29,10 +27,6 @@ class Pagination extends React.Component{
         )
     
     }
-
 }
-
-
-    
 
 export default Pagination;
