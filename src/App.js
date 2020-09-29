@@ -46,7 +46,7 @@ class App extends React.Component {
       // set the character homeworld = planet.name 
       planetsArray.push(planetData.name);  
       
-      const speciesURL = (character.species.length < 1) ? "https://swapi.dev/api/species/1/" : character.species[0]; //species array is broken for Human - need to hardcode the URL for Human species
+      const speciesURL = (character.species.length < 1) ? "https://swapi.dev/api/species/1/" : character.species[0].replace("http", "https"); //species array is broken for Human - need to hardcode the URL for Human species
      
       const speciesData = await fetch(speciesURL).then(speciesResponse => speciesResponse.json())
 
