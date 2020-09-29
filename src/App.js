@@ -40,7 +40,7 @@ class App extends React.Component {
     for (const character of data.results) {
   
       // get the planet data
-      const planetURL = character.homeworld;
+      const planetURL = character.homeworld.replace("http", "https");
       const planetData = await fetch(planetURL).then(planetResponse => planetResponse.json());
       
       // set the character homeworld = planet.name 
