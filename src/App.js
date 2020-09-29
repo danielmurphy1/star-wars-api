@@ -41,7 +41,7 @@ class App extends React.Component {
   
       // get the planet data
       const planetURL = character.homeworld;
-      const planetData = await fetch(planetURL).then(planetResponse => planetResponse.json())
+      const planetData = await fetch(planetURL).then(planetResponse => planetResponse.json());
       
       // set the character homeworld = planet.name 
       planetsArray.push(planetData.name);  
