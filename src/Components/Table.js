@@ -14,18 +14,6 @@ function Table (props){
         </tr>)
     })
 
-    // for(let i = 0; i < props.characters.length; i++){
-    //     let character = props.characters[i];
-    //     tableRows.push(<tr key={character.name}>
-    //                         <td>{character.name}</td>
-    //                         <td>{character.birth_year}</td>
-    //                         <td>{character.height}</td>
-    //                         <td>{character.mass}</td>
-    //                         <td>{character.homeworld}</td>
-    //                         <td>{character.species}</td>
-    //                     </tr>);
-    // }
-
     return(
         <table className="table table-dark">
             <thead className="thead-light">
