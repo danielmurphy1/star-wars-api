@@ -2,21 +2,29 @@ import React from "react";
 
 
 function Table (props){
-    const tableRows = [];
+    const tableRows = props.characters.map(character => {
+        return (
+        <tr key={character.name}>
+            <td>{character.name}</td>
+            <td>{character.birth_year}</td>
+            <td>{character.height}</td>
+            <td>{character.mass}</td>
+            <td>{character.homeworld}</td>
+            <td>{character.species}</td>
+        </tr>)
+    })
 
-    for(let i = 0; i < props.characters.length; i++){
-        let character = props.characters[i];
-        let planet = props.planets[i];
-        let race = props.species[i];
-        tableRows.push(<tr key={character.name}>
-                            <td>{character.name}</td>
-                            <td>{character.birth_year}</td>
-                            <td>{character.height}</td>
-                            <td>{character.mass}</td>
-                            <td>{planet}</td>
-                            <td>{race}</td>
-                        </tr>);
-    }
+    // for(let i = 0; i < props.characters.length; i++){
+    //     let character = props.characters[i];
+    //     tableRows.push(<tr key={character.name}>
+    //                         <td>{character.name}</td>
+    //                         <td>{character.birth_year}</td>
+    //                         <td>{character.height}</td>
+    //                         <td>{character.mass}</td>
+    //                         <td>{character.homeworld}</td>
+    //                         <td>{character.species}</td>
+    //                     </tr>);
+    // }
 
     return(
         <table className="table table-dark">

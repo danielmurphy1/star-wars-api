@@ -15,7 +15,7 @@ class Pagination extends React.Component{
         }
 
         const navigate = pages.map((page) => (
-            <button key={page} onClick={()=> this.props.loadCharacters(page)}>
+            <button className=" btn btn-outline-warning m-1" key={page} onClick={()=> this.props.loadCharacters(page)}>
                 {page}
             </button>
         ));

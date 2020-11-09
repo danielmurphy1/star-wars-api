@@ -6,19 +6,12 @@ import Table from "./Components/Table";
 import Pagination from "./Components/Pagination";
 import SearchForm from "./Components/SearchForm";
 
-// https://swapi.co/ (old)
-// https://swapi.dev/
-
-//"https://swapi.dev/api/people/4/ need to add final "/"
-
 class App extends React.Component {
   constructor(){
     super();
     this.state = {
       loading: false,
-      characters:[], 
-      planets: [], 
-      species: [], 
+      characters:[],  
       nameSearch: "", 
       count: ""
     }
@@ -28,48 +21,53 @@ class App extends React.Component {
     this.searchCharacter = this.searchCharacter.bind(this);
   }
 
- 
-
-  async componentDidMount(){
-    const planetsArray = [];
-    const speciesArray = [];
-    this.setState({loading: true});
-
-    const data = await fetch("https://swapi.dev/api/people/").then(response => response.json());
+async getCharacter(){
+  const data = await fetch("https://swapi.dev/api/people/").then(response => response.json());
     // loop through each character (data.results)
     for (const character of data.results) {
   
-      // get the planet data
+      // get the planet data from the URL endpoint
       const planetURL = character.homeworld.replace("http", "https");
       const planetData = await fetch(planetURL).then(planetResponse => planetResponse.json());
+      character.homeworld = planetData.name //changes character.homeworld from a URL in the returned data to the name of the planet
       
-      // set the character homeworld = planet.name 
-      planetsArray.push(planetData.name);  
-      
+      //get the species data from the URL endpoint
       const speciesURL = (character.species.length < 1) ? "https://swapi.dev/api/species/1/" : character.species[0].replace("http", "https"); //species array is broken for Human - need to hardcode the URL for Human species
-     
       const speciesData = await fetch(speciesURL).then(speciesResponse => speciesResponse.json())
-
-      speciesArray.push(speciesData.name)
+      character.species = speciesData.name; //changes character.species from a URL in the returned data to the name of the planet
     }
-   
+
     this.setState({
       loading: false, 
       characters: [...data.results],
-      planets: planetsArray,
-      species: speciesArray, 
       count: data.count
     })
   }
 
   async loadCharacters(pageNumber){
-   const response = await fetch(`https://swapi.dev/api/people/?page=${pageNumber}&search=${this.state.nameSearch}`)
+    const response = await fetch(`https://swapi.dev/api/people/?page=${pageNumber}&search=${this.state.nameSearch}`)
     .then(res => res.json());
+    for (const character of response.results) {
+  
+      // get the planet data from the URL endpoint
+      const planetURL = character.homeworld.replace("http", "https");
+      const planetData = await fetch(planetURL).then(planetResponse => planetResponse.json());
+      character.homeworld = planetData.name //changes character.homeworld from a URL in the returned data to the name of the planet
+      
+      //get the species data from the URL endpoint
+      const speciesURL = (character.species.length < 1) ? "https://swapi.dev/api/species/1/" : character.species[0].replace("http", "https"); //species array is broken for Human - need to hardcode the URL for Human species
+      const speciesData = await fetch(speciesURL).then(speciesResponse => speciesResponse.json())
+      character.species = speciesData.name; //changes character.species from a URL in the returned data to the name of the planet
+    }
     this.setState({
       characters: response.results, 
       count: response.count
     });
-    
+}
+
+componentDidMount(){
+    this.setState({loading: true});
+    this.getCharacter();
 }
 
 async searchCharacter(event){
@@ -77,6 +75,18 @@ async searchCharacter(event){
   console.log(this.state.nameSearch)
   const response = await fetch(`https://swapi.dev/api/people/?search=${this.state.nameSearch}`)
     .then(res => res.json());
+    for (const character of response.results) {
+  
+      // get the planet data from the URL endpoint
+      const planetURL = character.homeworld.replace("http", "https");
+      const planetData = await fetch(planetURL).then(planetResponse => planetResponse.json());
+      character.homeworld = planetData.name //changes character.homeworld from a URL in the returned data to the name of the planet
+      
+      //get the species data from the URL endpoint
+      const speciesURL = (character.species.length < 1) ? "https://swapi.dev/api/species/1/" : character.species[0].replace("http", "https"); //species array is broken for Human - need to hardcode the URL for Human species
+      const speciesData = await fetch(speciesURL).then(speciesResponse => speciesResponse.json())
+      character.species = speciesData.name; //changes character.species from a URL in the returned data to the name of the planet
+    }
     this.setState({
       characters: response.results,
       count: response.count
@@ -92,7 +102,7 @@ handleChange(event){
 
     render() {
       return (
-        <div className="App">
+        <div className="App container">
           <Header />
           <SearchForm 
             nameSearch={this.state.nameSearch} 
@@ -101,9 +111,7 @@ handleChange(event){
           {(this.state.loading) ? "loading" : 
             <Table 
               key={this.state.characters} 
-              characters={this.state.characters} 
-              planets={this.state.planets} 
-              species={this.state.species}/>}
+              characters={this.state.characters}/>}
             <Pagination 
             loadCharacters = {this.loadCharacters} 
             characters={this.state.characters} 
@@ -111,6 +119,6 @@ handleChange(event){
         </div>
       );
     }
-
 }
+
 export default App;
