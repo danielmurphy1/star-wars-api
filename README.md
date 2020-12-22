@@ -18,7 +18,7 @@ The table will auto-populate with the first 10 characters and their data from th
 
 Access the app [here](https://pacific-harbor-78489.herokuapp.com/)
 
-![StarWarsAPITable Screenshot](https://github.com/danielmurphy1/star-wars-api/blob/master/src/images/star-wars-api-screen.JPG)
+![StarWarsAPITable Screenshot](https://github.com/danielmurphy1/star-wars-api/blob/edit-and-refactor/src/images/star-wars-api-screen.JPG)
 ### Summary
 
 This application is the fourth that I have created using React, and the second consuming an API for data presentation. Creating this API app was more difficult than the previous one that I created, as I had to fetch not just endpoints to display the data that I wanted, but also had to fetch additional endpoints that were part of the initially returned dataset from the root data - specifically the species and the homeworld of each character. This forced me to learn how to use and organize multiple promise calls in order to display the desired data. 
