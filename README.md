@@ -1,4 +1,4 @@
-# Star Wars API Search Table App Using Javascript and React
+# Star Wars API 
 
 _Web Based Star Wars API Search Application Using React and Bootstrap4_
 
@@ -7,8 +7,9 @@ _Web Based Star Wars API Search Application Using React and Bootstrap4_
 To Download and Run Locally
 ___
 1. Clone Code Locally from GitHub
-2. Run "npm i" in terminal to install packages and dependencies
-3. Run "npm run start" in terminal to start application locally. 
+2. CD into application directory
+3. Run "npm i" in terminal to install packages and dependencies
+4. Run "npm run start" in terminal to start application locally. 
 
 To Use Locally or Accessing at Below Link
 ___
