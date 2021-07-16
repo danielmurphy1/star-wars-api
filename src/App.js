@@ -38,12 +38,12 @@ class App extends React.Component {
     for (const character of characters) {
 
       // get the planet data from the URL endpoint
-      const planetURL = character.homeworld.replace("http", "https");
+      const planetURL = character.homeworld;
       const planetData = await fetch(planetURL).then(planetResponse => planetResponse.json());
       character.homeworld = planetData.name //changes character.homeworld from a URL in the returned data to the name of the planet
       
       //get the species data from the URL endpoint
-      const speciesURL = (character.species.length < 1) ? "https://swapi.dev/api/species/1/" : character.species[0].replace("http", "https"); //species array is broken for Human - need to hardcode the URL for Human species
+      const speciesURL = (character.species.length < 1) ? "https://swapi.dev/api/species/1/" : character.species[0]; //species array is broken for Human - need to hardcode the URL for Human species
       const speciesData = await fetch(speciesURL).then(speciesResponse => speciesResponse.json())
       character.species = speciesData.name; //changes character.species from a URL in the returned data to the name of the planet
     }
